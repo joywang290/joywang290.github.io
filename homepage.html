@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="/static/css/layout.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+/* Create two equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 50%;
+  padding: 50px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: rgb(173, 173, 173);
+   color: rgb(0, 0, 0);
+   text-align: center;
+}
+</style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1 class="logo">Mental Health in Tech</h1>
+        <ul class="menu">
+          <li><a href="homepage.html">Home</a></li>
+          <li><a href="summary.html">Data Summary</a></li>
+          <li class="dropdown">
+          <button class="dropbtn">Analysis</button>
+            <div class="dropdown-content">
+              <a href="explore.html">Data Exploration</a>
+              <a href="bivariateanalysis.html">Bivariate Analysis</a>
+              <a href="multivariateanalysis.html">Multivariate Analysis</a>
+            </div>
+          </li>
+          <li><a href="{{ url_for('prediction') }}">Prediction</a></li>
+        </ul>
+    </div>      
+  </header>
+  <h2>Background Introduction</h2>
+  <h3 style="color:#0489aa"><b>Workplace Mental Health</b></h3>
+  <div class="row">
+    <div class="column">Mental health is an important aspect of overall health and well-being, 
+      and it is particularly important in the workplace because it can affect an individual's 
+      performance and their ability to interact with colleagues.</br></br>
+      There are several ways that employers can support the mental health of their employees, including:</br></br>
+      1. Providing access to mental health resources.</br></br>
+      2. Promote a culture of openness and support, where employees feel comfortable seeking help and discussing their mental health concerns.</br></br>
+      3. Offering training and education programs to increase awareness of mental health issues and how to support employees who may be struggling.</br></br>
+      4.	Providing resources and support for employees to manage stress and improve work-life balance.</br></br>
+      5.	Implementing policies and practices that promote a healthy work environment, such as providing regular breaks and promoting physical activity.</br></br>
+    </div>
+    <div class="column"><img src="/static/img/workplace.jpg" width="600px" height="400px" margin="auto"/></div>
+  </div>
+  <h3 style="color:#0489aa"><b>Why this dataset is important?</b></h3>
+  <h4>Company policies can have a significant impact on an individual's attitudes towards mental health. 
+    If a company has a positive attitude towards mental health and encourages employees to prioritize their mental wellbeing, 
+    employees who are facing mental health problems may be more willing to seek treatments.</h4>
+  <h4>The data provided in this dataset can help us understand which personal or company factors will affect employees' attitudes toward seeking treatments.</h4>
+  <h4>By understanding this information, companies can allocate their resources in the right place, and promotes employees' wellbeing at the same time.</h4>
+  </br></br></br></br>
+  <div class="footer">
+    <p>BIS 634 Yi-Chung Wang 2022 | Mental Health in Tech</p>
+  </div>
+</body>
+</html>
