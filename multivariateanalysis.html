@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="/static/css/layout.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+/* Create two equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 50%;
+  padding: 50px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: rgb(173, 173, 173);
+   color: rgb(0, 0, 0);
+   text-align: center;
+}
+</style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1 class="logo">Mental Health in Tech</h1>
+        <ul class="menu">
+          <li><a href="{{ url_for('index') }}">Home</a></li>
+          <li><a href="{{ url_for('summary') }}">Data Summary</a></li>
+          <li class="dropdown">
+          <button class="dropbtn">Analysis</button>
+            <div class="dropdown-content">
+              <a href="{{ url_for('explore') }}">Data Exploration</a>
+              <a href="{{ url_for('bianalysis') }}">Bivariate Analysis</a>
+              <a href="{{ url_for('multianalysis') }}">Multivariate Analysis</a>
+            </div>
+          </li>
+          <li><a href="{{ url_for('prediction') }}">Prediction</a></li>
+          </div>
+        </ul>
+    </div>
+  </header>
+  <h2>Multivariate Analysis</h2>
+  <h3>Correlation Matrix</h3>
+  <div class="row">
+    <div class="column"><div id='chart' class='chart'></div></div>
+    <div class="column"><img src="/static/img/corr.png" width="500px" height="500px" margin="auto"/></div>
+  </div>
+  <div id='chart' class='chart'></div>
+  <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+  <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>-->
+  <script type='text/javascript'>
+    var graphs2 = {{graphJSON | safe}};
+    Plotly.plot('chart',graphs2,{});
+  </script>
+  </br></br></br></br>
+  <div class="footer">
+    <p>BIS 634 Yi-Chung Wang 2022 | Mental Health in Tech</p>
+  </div>
+</body>
+</html>

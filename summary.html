@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="/static/css/layout.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+  * {
+    box-sizing: border-box;
+  }
+  
+  /* Create two equal columns that floats next to each other */
+  .column {
+    float: left;
+    width: 50%;
+    padding: 50px;
+  }
+  
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  .footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: rgb(173, 173, 173);
+   color: rgb(0, 0, 0);
+   text-align: center;
+  }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1 class="logo">Mental Health in Tech</h1>
+        <ul class="menu">
+          <li><a href="{{ url_for('index') }}">Home</a></li>
+          <li><a href="{{ url_for('summary') }}">Data Summary</a></li>
+          <li class="dropdown">
+          <button class="dropbtn">Analysis</button>
+            <div class="dropdown-content">
+              <a href="{{ url_for('explore') }}">Data Explore</a>
+              <a href="{{ url_for('bianalysis') }}">Bivariate Analysis</a>
+              <a href="{{ url_for('multianalysis') }}">Multivariate Analysis</a>
+            </div>
+          </li>
+          <li><a href="{{ url_for('prediction') }}">Prediction</a></li>
+          </div>
+        </ul>
+    </div>
+  </header>
+  <h2>Data Summary</h2>
+  <h3>&#128200; Data Description</h3>
+  <h4>This dataset is downloaded from <a href="https://www.kaggle.com/datasets/osmi/mental-health-in-tech-survey">Kaggle</a>. It is contructed by Open Sourcing Mental Illness. The data includes survey on mental health in the tech workplace in 2014. It includes the demographic of the participants, the quality of their work space, and their mental health status.</h4>
+  </br>
+  <h4><b>Dataset Credit:</b> OPEN SOURCING MENTAL ILLNESS, LTD. (December 2022)</h4>
+  <hr class="dashed" align="center" width="90%">
+  </br>
+  <h3>&#128202; Data Feature</h3>
+  <h4>This dataset contains the following data:</h4>
+  <h4><b>  1. Timestamp</b></h4>
+  <h4><b>  2. Age</b></h4>
+  <h4><b>  3. Gender</b></h4>
+  <h4><b>  4. Country</b></h4>
+  <h4><b>  5. State:</b> If you live in the United States, which state or territory do you live in?</h4>
+  <h4><b>  6. Self_employed:</b> Are you self-employed?</h4>
+  <h4><b>  7. Family_history:</b> Do you have a family history of mental illness?</h4>
+  <h4><b>  8. Treatment:</b> Have you sought treatment for a mental health condition?</h4>
+  <h4><b>  9. Work_interfere:</b> If you have a mental health condition, do you feel that it interferes with your work?</h4>
+  <h4><b>  10. No_employees:</b> How many employees does your company or organization have?</h4>
+  <h4><b>  11. Remote_work:</b> Do you work remotely (outside of an office) at least 50% of the time?</h4>
+  <h4><b>  12. Tech_company:</b> Is your employer primarily a tech company/organization?</h4>
+  <h4><b>  13. Benefits:</b> Does your employer provide mental health benefits?</h4>
+  <h4><b>  14. Care_options:</b> Do you know the options for mental health care your employer provides?</h4>
+  <h4><b>  15. Wellness_program:</b> Has your employer ever discussed mental health as part of an employee wellness program?</h4>
+  <h4><b>  16. Seek_help:</b> Does your employer provide resources to learn more about mental health issues and how to seek help?</h4>
+  <h4><b>  17. Anonymity:</b> Is your anonymity protected if you choose to take advantage of mental health or substance abuse treatment resources?</h4>
+  <h4><b>  18. Leave:</b> How easy is it for you to take medical leave for a mental health condition?</h4>
+  <h4><b>  19. Mental_health_consequence:</b> Do you think that discussing a mental health issue with your employer would have negative consequences?</h4>
+  <h4><b>  20. Phys_health_consequence:</b> Do you think that discussing a physical health issue with your employer would have negative consequences?</h4>
+  <h4><b>  21. Coworkers:</b> Would you be willing to discuss a mental health issue with your coworkers?</h4>
+  <h4><b>  22. Supervisor:</b> Would you be willing to discuss a mental health issue with your direct supervisor(s)?</h4>
+  <h4><b>  23. Mental_health_interview:</b> Would you bring up a mental health issue with a potential employer in an interview?</h4>
+  <h4><b>  24. Phys_health_interview:</b> Would you bring up a physical health issue with a potential employer in an interview?</h4>
+  <h4><b>  25. mental_vs_physical:</b> Do you feel that your employer takes mental health as seriously as physical health?</h4>
+  <h4><b>  26. Obs_consequence:</b> Have you heard of or observed negative consequences for coworkers with mental health conditions in your workplace?</h4>
+  <h4><b>  27. Comments:</b> Any additional notes or comments,</h4>
+  </br>
+  <hr class="dashed" align="center" width="90%">
+  </br>
+  <h3>&#128210; Data FAIRness</h3>
+  <h4><b>  1. Findable:</b> This data can be easily located and accessed on Kaggle and OPEN SOURCING MENTAL ILLNESS, LTD. Both sites provide clear and detailed information about the data. Including the meta-deta, and the license.</h4>
+  <h4><b>  2. Accessible:</b> According to the license "CC BY-SA 4.0", the user is free to shape and adapt the data.</h4>
+  <h4><b>  3. Interoperable:</b> This data can be accessed and use in a form of csv, which can be easily integrated and used with other data and systems.</h4>
+  <h4><b>  4. Reusable:</b> This data clearly states its credentials and it is under an open license, making it easy to find and access data reuse guidelines.</h4>
+  </br>
+  <hr class="dashed" align="center" width="90%">
+  </br>
+  <h3>&#128451; Data Preprocessing</h3>
+  <center><img src="/static/img/datacleaning.png" width=800px height=300px/></center>
+  <h4><b>  Data Cleaning: </b> For the data cleaning process, first, I dropped the unsed columns, which are "comments" and "timestamp". 
+  Then I examine data in each column, and look for missing or unformatted data.
+  There are some data in the Age columns which are obviously wrong information. So I deleted the rows which are lesser than 18-year-old or larger than 99-year-old.
+  The gender data are inputted in different format. I classify the answers into male or female, and deleted the rows which are unidentifiable.
+  Third, there are only missing data in two columns: work_interfere and self_employed. There are 1.45% of missing data in the column "self_employed", and 21% of missing data in the column "work_interfere".
+  Because there are relatively small amount of missing data in "self_employed", so I classify the NaN data into No.
+  I think the 21% missing data is because the people who don't have mental problems didn't answer this question. So I classify the missing data into a new category called "No mental problems".
+  Finally, I classify the country data into their continents.
+  </h4>
+  </br>
+  <hr class="dashed" align="center" width="90%">
+  </br>
+  <h3>&#128269; API</h3>
+  <center><img src="/static/img/API.png" width=800px height=400px/></center>
+  </br></br></br></br>  
+  <div class="footer">
+    <p>BIS 634 Yi-Chung Wang 2022 | Mental Health in Tech</p>
+  </div>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="/static/css/layout.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+/* Create two equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 50%;
+  padding: 50px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: rgb(173, 173, 173);
+   color: rgb(0, 0, 0);
+   text-align: center;
+}
+</style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1 class="logo">Mental Health in Tech</h1>
+        <ul class="menu">
+          <li><a href="{{ url_for('index') }}">Home</a></li>
+          <li><a href="{{ url_for('summary') }}">Data Summary</a></li>
+          <li class="dropdown">
+          <button class="dropbtn">Analysis</button>
+            <div class="dropdown-content">
+              <a href="{{ url_for('explore') }}">Data Exploration</a>
+              <a href="{{ url_for('bianalysis') }}">Bivariate Analysis</a>
+              <a href="{{ url_for('multianalysis') }}">Multivariate Analysis</a>
+            </div>
+          </li>
+          <li><a href="{{ url_for('prediction') }}">Prediction</a></li>
+          </div>
+        </ul>
+    </div>
+  </header>
+  <h2>Data Explore</h2>
+  <h3>Summary Statistic</h3>
+  <h4><b>Statistics of Age</b></h4>
+  <table>
+    <tr>
+      <th>Median</th>
+      <th>Mean</th>
+      <th>Max</th>
+      <th>Min</th>
+    </tr>
+    <tr>
+      <td>31</td>
+      <td>32.11</td>
+      <td>72</td>
+      <td>18</td>
+    </tr>
+  </table>
+  <div id="myGraph"></div>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script>
+    (
+            fetch("/api/age")
+            .then(response => response.json())
+            .then(function (data) {Plotly.newPlot("myGraph", data,        
+            layout={"title": `Distribution of Age`,
+                "xaxis": {"title": "Value"},
+                "yaxis": {"title": "Frequency"}})})
+    )
+  </script>
+  <form>
+    <div class="form-group">
+      <label style="margin-left: 3em" for="colname">Select Desired Attribute to Visualize</label>
+      <select class="form-control" id="colname" name="colname"
+      placeholder="Mental dataset Column Name">
+        <option value="" disabled selected> Choose a column name</option>
+        <option>Gender</option>
+        <option>self_employed</option>
+        <option>family_history</option>
+        <option>treatment</option>
+        <option>work_interfere</option>
+        <option>no_employees</option>
+        <option>remote_work</option>
+        <option>tech_company</option>
+        <option>benefits</option>
+        <option>care_options</option>
+        <option>wellness_program</option>
+        <option>seek_help</option>
+        <option>anonymity</option>
+        <option>leave</option>
+        <option>mental_health_consequence</option>
+        <option>phys_health_consequence</option>
+        <option>coworkers</option>
+        <option>supervisor</option>
+        <option>mental_health_interview</option>
+        <option>phys_health_interview</option>
+        <option>mental_vs_physical</option>
+        <option>obs_consequence</option>
+        <option>Continent</option>
+    </select>
+    </div>
+  </form>
+  <div id="pieGraph"></div>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script>
+    (       $("#colname").change(function(){
+            let colname = document.getElementById('colname').value;
+            fetch(`/api/piedata/${colname}`)
+            .then(response => response.json())
+            .then(function (data) {Plotly.newPlot("pieGraph", data, {"title": colname})})})
+    )
+  </script>
+  </br></br></br></br>
+  <div class="footer">
+    <p>BIS 634 Yi-Chung Wang 2022 | Mental Health in Tech</p>
+  </div>
+<body>
+<html>
